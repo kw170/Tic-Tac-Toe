@@ -1,0 +1,93 @@
+/* Import font */
+@font-face {
+    font-family: "Outfit";
+    src: url("./fonts/outfit.ttf");
+}
+*{
+    font-family: 'Outfit', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+body{
+    background-color:#1A2B33;
+}
+/* Title */
+.header{
+    margin: 20px 0px;
+    height:50px;
+    color:#A9BEC8;
+}
+
+.title{
+    font-size: 50px;
+    font-weight: bold;
+}
+
+/* Turn Display */
+.turn{
+    display: grid;
+    justify-content: center;
+    margin-top: 5px;
+    margin-bottom: 40px;
+}
+.turnDisplay{
+    background-color: #1E3640;
+    color:#A9BEC8;
+    padding:15px;
+    border-radius: 8px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, .3);
+    font-size:18px;
+    font-weight: bold;
+}
+
+/* Game board */
+.gameboard{
+    display: grid;
+    grid-template-columns: repeat(3,180px);
+    grid-template-rows: repeat(3,180px);
+    align-items: center;
+    font-size:55px;
+    gap:20px;
+    color: #A9BEC8;
+}
+.square{
+    display: grid;
+    justify-content: center;
+    padding:55px 0px;
+    margin:0px;
+    background-color: #1E3640;
+    border: 1px solid black;
+    border-radius:6px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, .5);
+}
+.square:hover{
+    filter: brightness(80%);
+}
+
+/* Reset Button */
+.bottom{
+    margin-top: 40px;
+    display: grid;
+    justify-content: center;
+}
+.reset{
+    color:#A9BEC8;
+    background-color: #1E3640;
+    border:none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, .3);
+    font-size:18px;
+    font-weight: bold;
+}
+.reset:hover{
+    filter: brightness(80%);
+}
