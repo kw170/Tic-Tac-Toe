@@ -24,14 +24,12 @@ function createPlayer(symbol){
 const player1 = createPlayer("X")
 const player2 = createPlayer("O")
 
-gameBoard.board.forEach(square =>{
-    console.log(square)
-})
+const square = document.querySelectorAll('.square');
+//Write a function to display board array content into gameboard grid
+function renderGridContent() {
+    for (let i = 0; i < 9; i++) {
+      square[i].textContent = gameBoard.board[i];
+    }
+  }
 
-// function renderGridContent(){
-//     gameBoard.board.forEach(symbol =>{
-//         console.log(symbol)
-//     })
-// }
-
-// renderGridContent()
+renderGridContent();
