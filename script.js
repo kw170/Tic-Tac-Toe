@@ -25,11 +25,19 @@ const player1 = createPlayer("X")
 const player2 = createPlayer("O")
 
 const square = document.querySelectorAll('.square');
-//Write a function to display board array content into gameboard grid
+const reset = document.querySelector(".reset")
+
+//Display board array content into gameboard grid
 function renderGridContent() {
     for (let i = 0; i < 9; i++) {
       square[i].textContent = gameBoard.board[i];
     }
   }
+
+//Reset button resets array and game display
+reset.addEventListener('click', () =>{
+    gameBoard.resetBoard()
+    renderGridContent()
+})
 
 renderGridContent();

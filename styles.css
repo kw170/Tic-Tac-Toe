@@ -67,6 +67,7 @@ body{
     border: 1px solid black;
     border-radius:6px;
     box-shadow: 0 10px 10px rgba(0, 0, 0, .5);
+    min-height: 70px;
 }
 .square:hover{
     filter: brightness(80%);
