@@ -8,6 +8,7 @@ const gameBoard = (()=>{
             }
             renderGridContent()
             turnCounter = 0
+            move();
         }
         const winningCombinations = [
             [0, 1, 2], // top row
@@ -32,16 +33,6 @@ function createPlayer(symbol){
         symbol: symbol,
     }
 }
-// const createPlayer = (symbol) => {
-//     this.symbol = symbol
-
-//     const getSymbol = () =>{
-//         return this.symbol
-//     }
-//     return {
-//         getSign
-//     }
-// }
 
 const playerX = createPlayer("X")
 const playerO = createPlayer("O")
@@ -65,30 +56,46 @@ reset.addEventListener('click', () =>{
 
 })
 //Adds mark when square is click on
-square.forEach(square =>{
-    square.addEventListener('click', () =>{
-        if(square.textContent !== "X" && square.textContent !== "O"){
-            if(turnCounter % 2 == 0){
-                square.textContent = "X"
-                square.style.color = "#34C3BE"
-                gameBoard.board[square.dataset.index] = "X"
-                turnDisplay.textContent = "0 TURN"
-                turnDisplay.style.color = "#F2B138"
-                checkWin("X")
-            }
-            else{
-                square.textContent = "O"
-                square.style.color = "#F2B138"
-                gameBoard.board[square.dataset.index] = "O"
-                turnDisplay.textContent = "X TURN"
-                turnDisplay.style.color = "#34C3BE"
-                checkWin("O")
-                console.log(turnCounter)
-            }
-            turnCounter++;
-        }
-    })
-})
+const clickHandler = (event) => {
+    const clickedSquare = event.target;
+  
+    if (clickedSquare.textContent !== "X" && clickedSquare.textContent !== "O") {
+      if (turnCounter % 2 === 0) {
+        clickedSquare.textContent = "X";
+        clickedSquare.style.color = "#34C3BE";
+        gameBoard.board[clickedSquare.dataset.index] = "X";
+        turnDisplay.textContent = "O TURN";
+        turnDisplay.style.color = "#F2B138";
+        checkWin("X");
+      } else {
+        clickedSquare.textContent = "O";
+        clickedSquare.style.color = "#F2B138";
+        gameBoard.board[clickedSquare.dataset.index] = "O";
+        turnDisplay.textContent = "X TURN";
+        turnDisplay.style.color = "#34C3BE";
+        checkWin("O");
+      }
+      turnCounter++;
+    }
+  };
+  
+  function move() {
+    square.forEach(square => {
+      square.addEventListener('click', clickHandler);
+    });
+  }
+
+  // Call the move function to add the event listeners
+  move();
+  
+  // To remove the event listeners
+  function removeListeners() {
+    square.forEach(square => {
+      square.removeEventListener('click', clickHandler);
+    });
+  }
+
+
 
 function checkWin(playerSymbol){
     for (let combination of gameBoard.winningCombinations) {
@@ -98,15 +105,18 @@ function checkWin(playerSymbol){
           gameBoard.board[combination[2]] === playerSymbol
         ) {
             turnDisplay.textContent = playerSymbol + " WINS!"
-            gameBoard.resetBoard()
-        //   return true; // Player has won
+            turnDisplay.style.color = "#A9BEC8";
+            // gameBoard.resetBoard()
+            removeListeners()
+
         }
       }
     if (turnCounter == 8){
         turnDisplay.textContent = "CATS GAME"
-        gameBoard.resetBoard()
+        turnDisplay.style.color = "#A9BEC8";
+        removeListeners()
+        // gameBoard.resetBoard()
     }
     } 
 renderGridContent();
-
 
