@@ -2,7 +2,6 @@ const gameBoard = (()=>{
         let board = ["", "", "", "", "", "", "", "", ""]
         // let board = ["X", "O", "X", "O", "X", "O", "O", "X", "X"]
 
-
         const resetBoard = () =>{
             for(let i = 0; i < board.length; i++){
                 board[i] = ""
@@ -51,6 +50,7 @@ function renderGridContent() {
 reset.addEventListener('click', () =>{
     gameBoard.resetBoard()
     renderGridContent()
+    turnCounter = 0
 })
 //Adds mark when square is click on
 square.forEach(square =>{
@@ -58,10 +58,14 @@ square.forEach(square =>{
         if(square.textContent !== "X" && square.textContent !== "O"){
             if(turnCounter % 2 == 0){
                 square.textContent = "X"
+                square.style.color = "#34C3BE"
+                gameBoard.board[square.dataset.index] = "X"
                 turnDisplay.textContent = "0 TURN"
             }
             else{
                 square.textContent = "O"
+                square.style.color = "#F2B138"
+                gameBoard.board[square.dataset.index] = "O"
                 turnDisplay.textContent = "X TURN"
             }
             turnCounter++;
@@ -72,9 +76,6 @@ square.forEach(square =>{
 
 renderGridContent();
 
-
-//Square click add X or O based on turn
-
-//Turn Display Update
-
-//Check if game is over who won
+// function win(){
+//     if
+// }
