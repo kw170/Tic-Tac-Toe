@@ -6,10 +6,23 @@ const gameBoard = (()=>{
             for(let i = 0; i < board.length; i++){
                 board[i] = ""
             }
+            renderGridContent()
+            turnCounter = 0
         }
+        const winningCombinations = [
+            [0, 1, 2], // top row
+            [3, 4, 5], // middle row
+            [6, 7, 8], // bottom row
+            [0, 3, 6], // left column
+            [1, 4, 7], // middle column
+            [2, 5, 8], // right column
+            [0, 4, 8], // top-left to bottom-right diagonal
+            [2, 4, 6]  // top-right to bottom-left diagonal
+        ];
 // Creates gameboard object
         return {
             board: board,
+            winningCombinations: winningCombinations,
             resetBoard: resetBoard
           };
 })();
@@ -49,8 +62,7 @@ function renderGridContent() {
 //Reset button resets array and game display
 reset.addEventListener('click', () =>{
     gameBoard.resetBoard()
-    renderGridContent()
-    turnCounter = 0
+
 })
 //Adds mark when square is click on
 square.forEach(square =>{
@@ -61,21 +73,40 @@ square.forEach(square =>{
                 square.style.color = "#34C3BE"
                 gameBoard.board[square.dataset.index] = "X"
                 turnDisplay.textContent = "0 TURN"
+                turnDisplay.style.color = "#F2B138"
+                checkWin("X")
             }
             else{
                 square.textContent = "O"
                 square.style.color = "#F2B138"
                 gameBoard.board[square.dataset.index] = "O"
                 turnDisplay.textContent = "X TURN"
+                turnDisplay.style.color = "#34C3BE"
+                checkWin("O")
+                console.log(turnCounter)
             }
             turnCounter++;
         }
     })
 })
 
-
+function checkWin(playerSymbol){
+    for (let combination of gameBoard.winningCombinations) {
+        if (
+          gameBoard.board[combination[0]] === playerSymbol &&
+          gameBoard.board[combination[1]] === playerSymbol &&
+          gameBoard.board[combination[2]] === playerSymbol
+        ) {
+            turnDisplay.textContent = playerSymbol + " WINS!"
+            gameBoard.resetBoard()
+        //   return true; // Player has won
+        }
+      }
+    if (turnCounter == 8){
+        turnDisplay.textContent = "CATS GAME"
+        gameBoard.resetBoard()
+    }
+    } 
 renderGridContent();
 
-// function win(){
-//     if
-// }
+
