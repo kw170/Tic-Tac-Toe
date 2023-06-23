@@ -22,7 +22,7 @@ body{
 }
 /* Title */
 .header{
-    margin: 20px 0px;
+    margin-bottom: 15px;
     height:50px;
     color:#A9BEC8;
 }
@@ -52,8 +52,8 @@ body{
 /* Game board */
 .gameboard{
     display: grid;
-    grid-template-columns: repeat(3,170px);
-    grid-template-rows: repeat(3,170px);
+    grid-template-columns: repeat(3,160px);
+    grid-template-rows: repeat(3,160px);
     align-items: center;
     font-size:55px;
     gap:20px;
@@ -62,7 +62,7 @@ body{
 .square{
     display: grid;
     justify-content: center;
-    padding:50px 0px;
+    padding:45px 0px;
     margin:0px;
     background-color: #1E3640;
     border: 1px solid black;
